@@ -1,11 +1,19 @@
+import { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 import styled from "styled-components";
+import UserContext from "../../contexts/UserContext";
 
 import Footer from "../shared/Footer"
 
 export default function MenuPage(){
+    const { user } = useContext(UserContext);
+    const [isUserLoggedIn, setIsUserLoggedIn] = useState(false);
     const navigate = useNavigate();
+
+    useEffect(() => {
+        if(user){setIsUserLoggedIn(true)};
+    }, [])
 
     const goToLogin = () => navigate("/menu/login")
     const alert = () => window.alert('Sobre construção');
@@ -15,9 +23,20 @@ export default function MenuPage(){
             <Header>
                 <ion-icon name="person-circle-sharp"></ion-icon>
                 <h1 onClick={goToLogin}>Entrar</h1>
+                {isUserLoggedIn
+                ? <>
+                    <img src={user.image} alt="" />
+                    <div>
+                        <h1>{user.name}</h1>
+                        <span>{user.email}</span>
+                    </div>
+                </>
+                : <></>
+                }
             </Header>
-            <Divisor/>
+            
             <Main>
+                <Divisor/>
                 <Container>
                     <ion-icon name="ellipsis-horizontal-sharp" onClick={alert}></ion-icon>
                     <span onClick={alert}>Sobre nós</span>
@@ -34,6 +53,16 @@ export default function MenuPage(){
                     <ion-icon name="shield-outline" onClick={alert}></ion-icon>
                     <span onClick={alert}>Política de privacidade</span>
                 </Container>
+                {isUserLoggedIn
+                ? <>
+                    <Divisor/>
+                    <Container>
+                        <ion-icon name="log-out-outline" onClick={alert}></ion-icon>
+                        <span onClick={alert}>Sair</span>
+                    </Container>
+                </>
+                : <></>
+                }
             </Main>
             <Footer />
         </Body>
@@ -47,27 +76,24 @@ const Body = styled.div`
     padding:15px;
 `
 const Main = styled.main`
-    section:nth-child(1){
-        margin-top:0px;
-    }
 `
 const Divisor = styled.div`
-    margin: 30px 0;
-    width:100%;
-    border-top:1px solid #ff4791;
+    margin: 30px auto;
+    width:90%;
+    border-top:1px solid #dddddd;
 `
 const Container = styled.section`
     display:flex;
     align-items:center;
-    margin-top:30px;
+    margin-top:35px;
     ion-icon{
-        width:35px;
-        height:35px;
+        width:25px;
+        height:25px;
     }
     span{
         margin-left: 20px;
         font-weight: 300;
-        font-size: 20px;
+        font-size: 18px;
         line-height: 19px;
         color: #000000;
     }
@@ -87,5 +113,9 @@ const Header = styled.header`
         font-size: 29px;
         line-height: 29px;
         color: #FF4791;
+    }
+    div{
+        display:flex;
+        flex-direction:column;
     }
 `

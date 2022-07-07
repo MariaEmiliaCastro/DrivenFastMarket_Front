@@ -16,6 +16,7 @@ import RegisterPage from './components/pages/RegisterPage';
 
 export default function App() {
     const [token, setToken] = useState(null);
+    const [user, setUser] = useState("")
     const [url, setUrl] = useState('https://driven-fast-market.herokuapp.com/');
 
     return (
