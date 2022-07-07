@@ -1,5 +1,7 @@
+import Footer from "../shared/Footer"
+
 export default function MenuPage(){
     return(
-        'Hello World'
+        <Footer />
     )
 }
