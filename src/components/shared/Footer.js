@@ -51,7 +51,7 @@ const LinksSections = styled.section`
             height:30px;
         }
         h2{
-            font-weight: 400;
+            font-weight: 300;
             font-size: 15px;
             line-height: 17px;
             color: #000000;
