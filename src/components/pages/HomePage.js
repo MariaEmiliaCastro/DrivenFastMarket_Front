@@ -26,7 +26,7 @@ export default function HomePage(){
     return(
         <Container>
             {/* Esse component pode ser substituido no futuro, ele pode ser visto como um placeholder */}
-            <Top></Top>
+            <Top>DrivenFastMarket</Top>
             <Corpo>
                 <Carousel className="carousel">
                     <Banner>
@@ -70,6 +70,7 @@ const Container = styled.div`
 const Top = styled.div`
     width: 100%;
     height: 80px;
+    display: flex;
     background: #FF4791;
     box-shadow: 0px 0px 20px 5px rgba(0, 0, 0, 0.25);
     border-radius: 0px 0px 10px 10px;
@@ -77,6 +78,16 @@ const Top = styled.div`
     top: 0;
     left: 0;
     z-index: 1;
+
+    font-family: 'Finlandica', sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 30px;
+    line-height: 50px;
+    margin-bottom: 40px;
+    color: white;
+    align-items: center;
+    justify-content: center;
 `
 const Corpo = styled.div`
     margin-top: 100px;
