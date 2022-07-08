@@ -22,7 +22,7 @@ export default function LoginPage (){
             password
         };
 
-        const promise = axios.post(`${url}/signin`, payload);
+        const promise = axios.post(`${url}signin`, payload);
         promise.then( response => {
             
             console.log(response.data.token);
