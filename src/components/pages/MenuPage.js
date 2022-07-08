@@ -16,7 +16,7 @@ export default function MenuPage(){
     }, [])
 
     const goToLogin = () => navigate("/menu/login")
-    const alert = () => window.alert('Sobre construção');
+    const alert = () => window.alert('Em construção');
 
     return(
         <Body>
