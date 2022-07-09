@@ -18,7 +18,7 @@ export default function ProductCategoryPage() {
     const navigate = useNavigate();
 
     const devToken = "fc0f83f8-c516-4b38-90e4-fb9ce3657cd5"
-    
+
     useEffect(() => {
         //if(!token){return navigate('/menu/login')};
         setIsLoading(true);
@@ -37,8 +37,8 @@ export default function ProductCategoryPage() {
     }, [])
     console.log(products)
 
-    const handleSeeMore = (x) => { navigate(`/${categoriaProduto}/${x}`) }
-
+    const handleSeeMore = (x) => { navigate(`/${categoriaProduto}/${x}`) };
+    const handleLastPage = (place) => { navigate(place) };
     function handleTransaction() {
         window.alert('Oi')
     }
@@ -50,48 +50,50 @@ export default function ProductCategoryPage() {
                     ? <></>
                     : <>
                         <Header>
-                            <ion-icon name="chevron-back-outline"></ion-icon>
-                            <h1>Hortifruti</h1>
+                            <ion-icon name="chevron-back-outline" ></ion-icon>
+                            <h1>{categoriaProduto}</h1>
                             <ion-icon name="search-outline"></ion-icon>
                         </Header>
                         <NavBar>
                             <ul>
-                                <li className="info"><span>Frutas</span></li>
-                                <li className="info"><span>Ovos</span></li>
-                                <li className="info"><span>Legumes</span></li>
-                                <li className="info"><span>Vegetais</span></li>
-                                <li className="info"><span>Frutas</span></li>
-                                <li className="info"><span>Frutas</span></li>
+                                {
+                                    products.map((array, index) => {
+                                        return (<li className="info" key={index}><span>{array.tipo}</span></li>)
+                                    })
+                                }
                             </ul>
                         </NavBar>
                         <Main>
-                            {//Cmponetizar dps
+                            {
+                                products.map((array, index) => {
+                                    return (
+                                        <Section key={index}>
+                                            <TitleContainer>
+                                                <span className="type">{array.tipo}</span>
+                                                <h3 onClick={() => handleSeeMore([array.tipo])}>VER MAIS</h3>
+                                            </TitleContainer>
+                                            <ProductContainer>
+                                                { //Componetizar Depois
+                                                    array.produtos.map((product, index) => {
+                                                        return (
+                                                            <ProductBox key={index}>
+                                                                <ProductImgBox>
+                                                                    <div className="info"><span>1 kg</span></div>
+                                                                    <img src={product.image} alt='' />
+                                                                    <button onClick={handleTransaction}><h3>+</h3></button>
+                                                                </ProductImgBox>
+                                                                <h2>R${product.preco}</h2>
+                                                                <span>{product.nome}</span>
+                                                            </ProductBox>
+
+                                                        )
+                                                    })
+                                                }
+                                            </ProductContainer>
+                                        </Section>
+                                    )
+                                })
                             }
-                            <Section>
-                                <TitleContainer>
-                                    <span className="type">Frutas</span>
-                                    <h3 onClick={() => handleSeeMore('Frutas')}>VER MAIS</h3>
-                                </TitleContainer>
-                                <ProductContainer>
-                                    { //Componetizar Depois
-                                        products.map(product => {
-                                            return (
-
-                                                <ProductBox>
-                                                    <ProductImgBox>
-                                                        <div className="info"><span>1 kg</span></div>
-                                                        <img src={product.image} alt='' />
-                                                        <button onClick={handleTransaction}><h3>+</h3></button>
-                                                    </ProductImgBox>
-                                                    <h2>R${product.preco}</h2>
-                                                    <span>{product.nome}</span>
-                                                </ProductBox>
-
-                                            )
-                                        })
-                                    }
-                                </ProductContainer>
-                            </Section>
                         </Main>
                     </>
             }
