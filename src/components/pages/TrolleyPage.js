@@ -5,9 +5,9 @@ import axios from "axios";
 import TokenContext from '../../contexts/TokenContext';
 import UserContext from '../../contexts/UserContext';
 
-import styled from "styled-components";
-import { Main, Button } from "../pageComponents/TrolleyPage/TrolleyStyle"
+import PageHeader from "../shared/Header";
 import TrolleyMain from "../pageComponents/TrolleyPage/TrolleyMain";
+import EmptyPage from "../shared/EmptyPage";
 
 export default function TrolleyPage(){
     const [costumerCart, setCostumerCart] = useState({products:[]});
@@ -38,7 +38,7 @@ export default function TrolleyPage(){
     }, []);
     */
 
-    const handleSearchProducts = () => navigate('/');
+
 
     return(
         <>
@@ -46,19 +46,10 @@ export default function TrolleyPage(){
             pageIsLoading
             ? <></>
             :   <>
-                    <Header className="title">
-                        <h1>Carrinho</h1>
-                    </Header>
+                    <PageHeader page="Carrinho" />
                     {
                         costumerCart.products.length === 0
-                        ?   <Main className="empty">
-                                <div>
-                                    <ion-icon name="cart-outline"></ion-icon>
-                                    <h1>Nenhum produto por aqui</h1>
-                                    <h3>Você ainda não adicionou nenhum produto a seu carrinho</h3>
-                                    <Button className="toProducts" onClick={handleSearchProducts}><span>Pesquisar produtos</span></Button>
-                                </div>
-                            </Main> 
+                        ?   <EmptyPage page="trolley"/>
                         :   <TrolleyMain costumerCart={costumerCart} costumerInfos={costumerInfos} handleCostumerCart={handleCostumerCart}/>
                     }
                 </>
@@ -67,30 +58,3 @@ export default function TrolleyPage(){
     )
 }
 
-const Header = styled.header`
-    position: fixed;
-    top: 0;
-    left: 0;
-    width:100%;
-    height: 70px;
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    background-color: #FFFFFF;
-    padding: 10px;
-    ion-icon{
-        width: 40px;
-        height: 40px;
-        color: #FF4791;
-    }
-    h1{
-        font-family: 'Inter', 'sans-serif';
-        font-weight: 700;
-        font-size: 21px;
-        line-height: 29px;
-        color: #FF4791;
-    }
-    &.title{
-        justify-content:center;
-    }
-`

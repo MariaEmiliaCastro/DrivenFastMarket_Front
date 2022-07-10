@@ -5,65 +5,8 @@ const Main = styled.main`
     min-height: 100vh;
     display:flex;
     flex-direction: column;
-    &.empty{
-        aling-items:center;
-        justify-content:center;
-        ion-icon{
-            width:70px;
-            height: 70px;
-            margin-bottom: 10px;
-        }
-        h1, h3{
-            margin-bottom: 15px;
-            font-family: 'Inter';
-            font-style: italic;
-        }
-        h1{
-            font-weight: 700;
-            font-size: 19px;
-            color: #000000;
-        }
-        h3{
-            font-weight: 500;
-            font-size: 14px;
-            line-height: 16px;
-            text-align: center;
-            max-width: 210px;
-            color: rgba(0, 0, 0, 0.5);
-
-        }
-
-        div{
-            display:flex;
-            flex-direction: column;
-            align-items:center;
-        }
-    }
 `
-const Button = styled.button`
-    background: none;
-    color: inherit;
-    border: none;
-    padding: 0;
-    font: inherit;
-    cursor: pointer;
-    outline: inherit;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    width:315px;
-    height: 50px;
-    background-color: #FF4791;
-    border-radius: 50px;
-    span{
-        font-family: 'Inter';
-        font-style: italic;
-        font-weight: 700;
-        font-size: 20px;
-        line-height: 24px;
-        color: #FFFFFF;
-    }
-`
+
 const Section = styled.section`
     display: flex;
     align-items:center;
@@ -197,4 +140,4 @@ const ItensList = styled.li`
     }
 `
 
-export { Main, Button, Section, Container, Divisor, List, ItensList }
+export { Main, Section, Container, Divisor, List, ItensList }
