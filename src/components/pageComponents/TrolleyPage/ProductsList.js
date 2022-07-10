@@ -1,7 +1,7 @@
-import { useState } from "react";
-import { useContext } from "react";
-
+import { useState, useContext } from "react";
+import axios from "axios";
 import TokenContext from "../../../contexts/TokenContext";
+import UserContext from "../../../contexts/UserContext";
 
 import { ItensList } from "./TrolleyStyle";
 
@@ -9,8 +9,11 @@ export default function ProductsList({ product, handleCostumerCart }) {
     const [item, setItem] = useState(product);
     const [waitClick, setWaitClick] = useState(false);
     
+    const { token } = useContext(TokenContext);
+    const { url } = useContext(UserContext);
+    
     function handleClick(type){
-        const { token } = useContext(TokenContext);
+
         setWaitClick(true);
         
         const clickType = {
@@ -67,7 +70,7 @@ export default function ProductsList({ product, handleCostumerCart }) {
                     ?   <ion-icon disabled={waitClick} name="trash-outline" onClick={() => handleClick("delete")}></ion-icon>
                     :   <ion-icon disabled={waitClick} name="remove-outline" onClick={() => handleClick("reduce")}></ion-icon>
                 }
-                <span>{amount}</span>
+                <span>{product.amount}</span>
                 <ion-icon disabled={waitClick} name="add-outline" onClick={() => handleClick("adding")}></ion-icon>
             </div>
         </ItensList>

@@ -4,6 +4,9 @@ import ProductsList from "./ProductsList";
 import { Main, Section, Container, Divisor, List, ItensList } from './TrolleyStyle'
 
 export default function TrolleyMain({ costumerCart, costumerInfos, handleCostumerCart}) {
+
+    const handleFeatInConstruction = () => window.alert('Essa função foi desativada temporariamente. Desculpe pelo transtorno!');
+
     return (
         <Main>
             <Section>
@@ -28,7 +31,7 @@ export default function TrolleyMain({ costumerCart, costumerInfos, handleCostume
                 <span className="cupomCode"></span>
                 <div className="extraInteractions">
                     <ion-icon name="add-circle-outline"></ion-icon>
-                    <span>ADICIONAR</span>
+                    <span onClick={handleFeatInConstruction}>ADICIONAR</span>
                 </div>
             </Section>
             <Divisor />
@@ -36,12 +39,7 @@ export default function TrolleyMain({ costumerCart, costumerInfos, handleCostume
                 <Container>
                     <h1>ITENS</h1>
                     <List>
-                        {
-                            costumerCart.produts.map(product =>{
-                                <ProductsList product={product} handleCostumerCart={handleCostumerCart}/>
-                            })
-                        }
-                        
+                        {costumerCart.products.map(product => <ProductsList product={product} handleCostumerCart={handleCostumerCart}/>)}
                     </List>
                 </Container>
             </Section>
@@ -50,15 +48,15 @@ export default function TrolleyMain({ costumerCart, costumerInfos, handleCostume
                 <Container className="result">
                     <div className="result">
                         <h3>Subtotal</h3>
-                        <h3>R$ 81,80</h3>
+                        <h3>R$ {costumerCart.subtotal}</h3>
                     </div>
                     <div className="result">
                         <h2>Taxa de entrega</h2>
-                        <h2>GRÁTIS</h2>
+                        <h2>R$ 5,00</h2>
                     </div>
                     <div className="result">
                         <h1>TOTAL</h1>
-                        <h1>R$ 50,00</h1>
+                        <h1>R$ {costumerCart.subtotal + 3.50}</h1>
                     </div>
                 </Container>
             </Section>

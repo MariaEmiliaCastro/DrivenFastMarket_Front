@@ -50,7 +50,7 @@ export default function TrolleyPage(){
                         <h1>Carrinho</h1>
                     </Header>
                     {
-                        costumerCart.products.length === 1
+                        costumerCart.products.length === 0
                         ?   <Main className="empty">
                                 <div>
                                     <ion-icon name="cart-outline"></ion-icon>
