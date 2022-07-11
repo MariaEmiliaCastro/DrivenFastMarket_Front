@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import UserContext from "../../contexts/UserContext";
 
-import Footer from "../shared/Footer"
+import Footer from "../shared/PageFooter"
 
 export default function MenuPage(){
     const { user } = useContext(UserContext);
