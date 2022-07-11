@@ -9,7 +9,7 @@ import { ToastContainer, toast } from 'react-toastify';
 export default function LoginPage (){
     
     const { url } = React.useContext(UserContext);
-    const { setToken } = React.useContext(TokenContext);
+    const { setToken, token } = React.useContext(TokenContext);
     const [email, setEmail] = React.useState('');
     const [password, setPassword] = React.useState('');
 
@@ -24,7 +24,7 @@ export default function LoginPage (){
 
         const promise = axios.post(`${url}signin`, payload);
         promise.then( response => {
-            
+
             console.log(response.data.token);
             setToken({
                 headers:{
@@ -42,7 +42,6 @@ export default function LoginPage (){
             });
             // save to session storage
             sessionStorage.setItem('token', response.data.token);
-            navigate("/");
             navigate("/");
         })
         .catch(err => {

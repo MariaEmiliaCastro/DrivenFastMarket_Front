@@ -12,7 +12,7 @@ export default function PageHeader({page, type, navigateTo }){
                 ?   <></>
                 :   <ion-icon name="chevron-back-outline" onClick={handleNavigation}></ion-icon>
             }
-            <h1 className="type">{page}</h1>
+            <h1>{page}</h1>
             {
                 (page === "Carrinho" || page === "Pedidos" || page === "Pagamento")
                 ?   page === "Pagamento"
@@ -55,4 +55,5 @@ const Header = styled.header`
         width:35px;
         height:35px;
     }
+    
 `
