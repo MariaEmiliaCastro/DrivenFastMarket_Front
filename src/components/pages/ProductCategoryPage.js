@@ -47,7 +47,7 @@ export default function ProductCategoryPage() {
                 isLoading
                     ? <></>
                     : <>
-                        <PageHeader page={categoriaProduto} />
+                        <PageHeader page={categoriaProduto} navigateTo="/" />
                         <NavBar>
                             <ul>
                                 {
