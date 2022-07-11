@@ -19,7 +19,7 @@ export default function ProductsList({ product, handleCostumerCart }) {
         const clickType = {
             adding: async () => {
                 try{
-                    const promisse = axios.put(`${url}carrinho`, {item, amount: 1}, token);
+                    const promisse = axios.put(`${url}carrinho`, {...item, amount: 1}, token);
                     promisse.then(() => {
                         handleCostumerCart()
                     })
@@ -29,7 +29,7 @@ export default function ProductsList({ product, handleCostumerCart }) {
             },
             reduce: async () => {
                 try{
-                    const promisse = axios.put(`${url}carrinho`, {item, amount: -1}, token);
+                    const promisse = axios.put(`${url}carrinho`, {...item, amount: -1}, token);
                     promisse.then(() => {
                         handleCostumerCart()
                     })
@@ -39,7 +39,7 @@ export default function ProductsList({ product, handleCostumerCart }) {
             },
             delete: async () => {
                 try{
-                    const promisse = axios.delete(`${url}carrinho`, {item, amount: 1, productId: `${item.categoria}.${item.tipo}.${item.nome}`}, token);
+                    const promisse = axios.delete(`${url}carrinho`, {...item, amount: 1, productId: `${item.categoria}.${item.tipo}.${item.nome}`}, token);
                     promisse.then(() => {
                         handleCostumerCart()
                     })
