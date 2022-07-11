@@ -1,8 +1,9 @@
 import styled from "styled-components"
 
-export default function PageHeader({page}){
+export default function PageHeader({page, type }){
+
     return(
-        <Header className="title">
+        <Header className={type}>
             {
                 (page === "Carrinho" || page === "Pedidos")
                 ?   <></>
@@ -28,10 +29,10 @@ const Header = styled.header`
     align-items:center;
     justify-content:space-between;
     background-color: #FFFFFF;
-    padding: 10px;
+    padding: 0 10px;
     ion-icon{
-        width: 40px;
-        height: 40px;
+        width: 35px;
+        height: 35px;
         color: #FF4791;
     }
     h1{

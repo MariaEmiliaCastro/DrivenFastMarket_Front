@@ -29,14 +29,10 @@ export default function TrolleyPage(){
             navigate("/");
         });
     }
-    /* 
     useEffect(() => {
-        //if(!token){return navigate('/menu/login')};
-
-        handleCostumerCart()
-
+        if(!token){return }
+        else{handleCostumerCart()};
     }, []);
-    */
 
 
 
@@ -46,7 +42,7 @@ export default function TrolleyPage(){
             pageIsLoading
             ? <></>
             :   <>
-                    <PageHeader page="Carrinho" />
+                    <PageHeader page="Carrinho" type="title"/>
                     {
                         costumerCart.products.length === 0
                         ?   <EmptyPage page="trolley"/>
