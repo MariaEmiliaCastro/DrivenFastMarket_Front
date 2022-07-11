@@ -1,21 +1,35 @@
 import { useState, useContext, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
 import UserContext from "../../contexts/UserContext";
 import TokenContext from "../../contexts/TokenContext";
 
+
 import styled from "styled-components";
 
-export default function AddToCartButton({ product }){
+
+export default function AddToCartButton({ product, productAmount }){
     const { url } = useContext(UserContext);
     const [ item, setItem ] = useState(product);
     const [ isButtonDisable, setIsButtonDisable ] = useState(false);
     const [ changeButton, setChangeButton ] = useState(false);
-    const [ number, setNumber ] = useState(0);
+    const [ number, setNumber ] = useState(productAmount);
+    const { token } = useContext(TokenContext);
+    const navigate = useNavigate();
+    console.log(item)
+    useEffect(() =>  {
+        setNumber(productAmount)
+    }, [])
 
     function handleCostumerCart(type){
         setIsButtonDisable(true);
-        const { token } = useContext(TokenContext);
+        if(!token){
+            if(window.confirm('Aparentemente você não está em uma conta ou não possui uma, para colocar itens no carrinho você precisa estar em uma conta! Mover para tela de login?')){
+                return navigate("/menu/login")
+            }
+            return 
+        }
         const clickType = {
             toCart: async () => {
                 try{
@@ -74,17 +88,17 @@ export default function AddToCartButton({ product }){
         <>
             {
                 changeButton
-                ?   <Button className="haveOnCart">
+                ?   <Button className="button haveOnCart">
                         {  
                             number > 1
-                            ?   <button disabled={isButtonDisable} onClick={() => handleCostumerCart("reduce")}>-</button>
+                            ?   <button disabled={isButtonDisable} onClick={() => handleCostumerCart("reduce")}><ion-icon name="remove-outline"></ion-icon></button>
                             :   <button disabled={isButtonDisable} onClick={() => handleCostumerCart("delete")}><ion-icon name="trash-outline"></ion-icon></button>
                         }
                         <span>{number}</span>
-                        <button disabled={isButtonDisable} onClick={() => handleCostumerCart("adding")}>+</button>
+                        <button disabled={isButtonDisable} onClick={() => handleCostumerCart("adding")}><ion-icon name="add-outline"></ion-icon></button>
                     </Button>
-                :   <Button>
-                        <button disabled={isButtonDisable} onClick={() => handleCostumerCart("toCart")}>+</button>
+                :   <Button className="button">
+                        <button disabled={isButtonDisable} onClick={() => handleCostumerCart("toCart")}><ion-icon name="add-outline"></ion-icon></button>
                     </Button>
             }
         </> 
@@ -92,31 +106,26 @@ export default function AddToCartButton({ product }){
 }
 
 const Button = styled.div`
-    button{
-        background: none;
-        color: inherit;
-        border: none;
-        padding: 0;
-        font: inherit;
-        cursor: pointer;
-        outline: inherit;
-    }
     display:flex;
     align-items:center;
     justify-content:center;
-    height:35px;
-    width:35px;
-    background-color: #FF4791;
     border-radius:20px;
     transition: width 1s;
-
+    button{
+        width: 20px;
+        height:20px;
+    }
+    ion-icon{
+        width: 20px;
+        height: 20px;
+        color: #ffffff;
+    }
     h3{
         font-weight: 500;
         font-size: 25px;
         line-height: 24px;
         color: #ffffff;
     }
-
     &.haveOnCart{
         padding: 0 10px;
         width: 100px;
