@@ -25,6 +25,7 @@ export default function PageHeader({page, type, navigateTo }){
 }
 
 const Header = styled.header`
+    z-index: 1;
     position: fixed;
     top: 0;
     left: 0;

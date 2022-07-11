@@ -8,6 +8,9 @@ const Main = styled.main`
     &.trolley{
         padding-bottom: 165px;
     }
+    ion-icon{
+        z-index: 0;
+    }
 `
 
 const Section = styled.section`

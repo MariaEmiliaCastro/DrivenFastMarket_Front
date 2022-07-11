@@ -4,6 +4,7 @@ import ProductsList from "./ProductsList";
 import { Main, Section, Container, Divisor, List, ItensList } from './TrolleyStyle'
 
 export default function TrolleyMain({ costumerCart, costumerInfos, handleCostumerCart}) {
+    console.log(costumerCart.products[1]._id)
 
     const handleFeatInConstruction = () => window.alert('Essa função foi desativada temporariamente. Desculpe pelo transtorno!');
 
@@ -39,7 +40,13 @@ export default function TrolleyMain({ costumerCart, costumerInfos, handleCostume
                 <Container>
                     <h1>ITENS</h1>
                     <List>
-                        {costumerCart.products.map(product => <ProductsList product={product} handleCostumerCart={handleCostumerCart}/>)}
+                        {costumerCart.products.map(product => {
+                            console.log(product._id)
+                            return(
+                                <ProductsList product={product} handleCostumerCart={handleCostumerCart}/>
+                            )
+                        
+                        })}
                     </List>
                 </Container>
             </Section>
