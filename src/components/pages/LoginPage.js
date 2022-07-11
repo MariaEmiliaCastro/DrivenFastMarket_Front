@@ -43,7 +43,6 @@ export default function LoginPage (){
             // save to session storage
             sessionStorage.setItem('token', response.data.token);
             navigate("/");
-            navigate("/");
         })
         .catch(err => {
             if(err.response.status === 500){
