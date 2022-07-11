@@ -6,6 +6,7 @@ import TokenContext from '../../contexts/TokenContext';
 import UserContext from '../../contexts/UserContext';
 import PageHeader from "../shared/Header";
 import Products from "../shared/MarketPages";
+import PageFooter from "../shared/PageFooter";
 
 import styled from "styled-components";
 
@@ -80,6 +81,7 @@ export default function ProductCategoryPage() {
                                 })
                             }
                         </Main>
+                        <PageFooter pagePlace="Loja"/>
                     </>
             }
 
