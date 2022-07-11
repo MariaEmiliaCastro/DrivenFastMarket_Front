@@ -4,6 +4,7 @@ import UserContext from "../../contexts/UserContext";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 import Carousel from 'react-elastic-carousel'
+import PageFooter from "../shared/PageFooter";
 
 export default function HomePage(){
     
@@ -52,7 +53,7 @@ export default function HomePage(){
                     })}
                 </Categories>
             </Corpo>
-            
+            <PageFooter pagePlace="Loja" />
         </Container>
     )
 }

@@ -4,9 +4,11 @@ import axios from "axios";
 
 import TokenContext from '../../contexts/TokenContext';
 import UserContext from '../../contexts/UserContext';
+import PageHeader from "../shared/Header";
+import Products from "../shared/MarketPages";
+import PageFooter from "../shared/PageFooter";
 
 import styled from "styled-components";
-import { Header, ProductBox } from "../shared/storeStyle";
 
 export default function ProductCategoryPage() {
     const { categoriaProduto } = useParams();
@@ -39,9 +41,6 @@ export default function ProductCategoryPage() {
 
     const handleSeeMore = (x) => { navigate(`/${categoriaProduto}/${x}`) };
     const handleLastPage = (place) => { navigate(place) };
-    function handleTransaction() {
-        window.alert('Oi')
-    }
 
     return (
         <Body>
@@ -49,11 +48,7 @@ export default function ProductCategoryPage() {
                 isLoading
                     ? <></>
                     : <>
-                        <Header>
-                            <ion-icon name="chevron-back-outline" ></ion-icon>
-                            <h1>{categoriaProduto}</h1>
-                            <ion-icon name="search-outline"></ion-icon>
-                        </Header>
+                        <PageHeader page={categoriaProduto} navigateTo="/" />
                         <NavBar>
                             <ul>
                                 {
@@ -76,16 +71,7 @@ export default function ProductCategoryPage() {
                                                 { //Componetizar Depois
                                                     array.produtos.map((product, index) => {
                                                         return (
-                                                            <ProductBox key={index}>
-                                                                <ProductImgBox>
-                                                                    <div className="info"><span>1 kg</span></div>
-                                                                    <img src={product.image} alt='' />
-                                                                    <button onClick={handleTransaction}><h3>+</h3></button>
-                                                                </ProductImgBox>
-                                                                <h2>R${product.preco}</h2>
-                                                                <span>{product.nome}</span>
-                                                            </ProductBox>
-
+                                                            <Products product={product} index={index} key={index}/>
                                                         )
                                                     })
                                                 }
@@ -95,6 +81,7 @@ export default function ProductCategoryPage() {
                                 })
                             }
                         </Main>
+                        <PageFooter pagePlace="Loja"/>
                     </>
             }
 
@@ -147,13 +134,13 @@ const NavBar = styled.nav`
             background-color: #ffffff;
             padding: 10px;
             margin: 0 5px;
-            height: 40px;
+            height: 30px;
         }
     }
     
 `
 const Main = styled.main`
-    margin-top: 120px;
+    margin-top: 110px;
     margin-bottom: 90px;
 `
 const Section = styled.section`
@@ -197,42 +184,4 @@ const ProductContainer = styled.ul`
         margin-right: 0px;
     }
 
-`
-const ProductImgBox = styled.div`
-    position:relative;
-    padding: 15px;
-    img{
-        box-shadow: 0px 0px 20px 5px rgba(0, 0, 0, 0.01);
-        width:105px;
-        height:105px;
-    }
-    div.info{
-        background-color: #FFFFFF;
-        position: absolute;
-        top: 7.5px;
-        left: 87.5px;
-        padding: 0px 5px;
-        border-radius: 12.5px;
-        height: 25px;
-        span{
-            font-weight: 400;
-            font-size: 15px;
-            line-height: 15px;
-        }
-    }
-    button{
-        position: absolute;
-        top: 100px;
-        left:100px;
-        height:35px;
-        width:35px;
-        background-color: #FF4791;
-        border-radius:20px;
-        h3{
-            font-weight: 500;
-            font-size: 25px;
-            line-height: 24px;
-            color: #ffffff;
-        }
-    }
 `

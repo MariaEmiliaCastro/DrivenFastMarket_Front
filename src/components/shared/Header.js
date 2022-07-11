@@ -1,18 +1,24 @@
 import styled from "styled-components"
-
-export default function PageHeader({page}){
+import { useNavigate } from "react-router-dom"
+import { Divisor } from "../pageComponents/TrolleyPage/TrolleyStyle";
+export default function PageHeader({page, type, navigateTo }){
+    const navigate = useNavigate();
+    const handleNavigation = () => navigate(navigateTo);
+    const handleSearch = () => window.alert("Procurar está desativado temporariamente! Desculpe pelo transtorno")
     return(
-        <Header className="title">
+        <Header className={type}>
             {
                 (page === "Carrinho" || page === "Pedidos")
                 ?   <></>
-                :   <ion-icon name="chevron-back-outline"></ion-icon>
+                :   <ion-icon name="chevron-back-outline" onClick={handleNavigation}></ion-icon>
             }
             <h1>{page}</h1>
             {
                 (page === "Carrinho" || page === "Pedidos" || page === "Pagamento")
-                ? <></>
-                : <ion-icon name="search-outline"></ion-icon>
+                ?   page === "Pagamento"
+                    ?   <div></div>
+                    :   <></>
+                : <ion-icon name="search-outline" onClick={handleSearch}></ion-icon>
             }
         </Header>
     )
@@ -28,10 +34,10 @@ const Header = styled.header`
     align-items:center;
     justify-content:space-between;
     background-color: #FFFFFF;
-    padding: 10px;
+    padding: 0 10px;
     ion-icon{
-        width: 40px;
-        height: 40px;
+        width: 35px;
+        height: 35px;
         color: #FF4791;
     }
     h1{
@@ -44,4 +50,9 @@ const Header = styled.header`
     &.title{
         justify-content:center;
     }
+    div{
+        width:35px;
+        height:35px;
+    }
+    
 `

@@ -31,8 +31,6 @@ export default function LoginPage (){
                     Authorization: `Bearer ` + response.data.token
                 }
             })
-            // save to local storage
-            localStorage.setItem("token", token);
             toast.success('🛒 Login realizado com sucesso!', {
                 position: "top-right",
                 autoClose: 5000,
@@ -42,7 +40,8 @@ export default function LoginPage (){
                 draggable: true,
                 progress: undefined,
             });
-
+            // save to session storage
+            sessionStorage.setItem('token', response.data.token);
             navigate("/");
         })
         .catch(err => {
