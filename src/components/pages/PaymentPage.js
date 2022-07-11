@@ -26,61 +26,63 @@ export default function PaymentPage(){
     const { token } = useContext(TokenContext);
     const { url } = useContext(UserContext);
 
-    const dummyCart = {
-        products: [
-            {
-                id: 1,
-                nome: "Batata",
-                preco: 10,
-                amount: 1,
-                image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSWbXjrLaTPMkC11LVRHmaR-OoM8KgHNPb1CA&usqp=CAU"
-            },
-            {
-                id: 2,
-                nome: "Bananinha",
-                preco: 20,
-                amount: 2,
-                image: "https://i.pinimg.com/564x/7f/83/52/7f83520aaf84a65bbf9a35acdf08cc33.jpg"
-            },
-            {
-                id: 3,
-                nome: "Cenoura",
-                preco: 30,
-                amount: 3,
-                image: "http://afflictor.com/wp-content/uploads/2014/09/Gia_Carangi_4.jpg"
-            }
-        ]
-    }
+    // const dummyCart = {
+    //     products: [
+    //         {
+    //             id: 1,
+    //             nome: "Batata",
+    //             preco: 10,
+    //             amount: 1,
+    //             image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSWbXjrLaTPMkC11LVRHmaR-OoM8KgHNPb1CA&usqp=CAU"
+    //         },
+    //         {
+    //             id: 2,
+    //             nome: "Bananinha",
+    //             preco: 20,
+    //             amount: 2,
+    //             image: "https://i.pinimg.com/564x/7f/83/52/7f83520aaf84a65bbf9a35acdf08cc33.jpg"
+    //         },
+    //         {
+    //             id: 3,
+    //             nome: "Cenoura",
+    //             preco: 30,
+    //             amount: 3,
+    //             image: "http://afflictor.com/wp-content/uploads/2014/09/Gia_Carangi_4.jpg"
+    //         }
+    //     ]
+    // }
+
+    useEffect(() => {
+        const promise = axios.get(`${url}carrinho`, token);
+        promise.then((res) => {
+            setCostumerCart(res.data);
+            setPageIsLoading(false)
+        });
+        promise.catch((error) => {
+            navigate("/");
+        });
+    }, []);
 
     const sendOrder = async () => {
-//        setPageIsLoading(true);
+        setPageIsLoading(true);
         console.log(paymentInfo);
         if(paymentInfo.cardNumber === undefined || paymentInfo.cardNumber === '' || paymentInfo.cardName === undefined || paymentInfo.cardName === '' || paymentInfo.cardCVV === undefined || paymentInfo.cardCVV === '' || customerCPF === undefined || customerCPF === ''){
             alert('Preencha todos os campos para continuar');
             return;
+        }else{
+            const response = await axios.post(`${url}/checkout`, {
+                costumerCart,
+                costumerInfos,
+                paymentInfo
+            }, {
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            });
+            setPageIsLoading(false);
+            console.log(response);
+            navigate('/');
         }
-        // const response = await axios.post(`${url}/orders`, {
-        //     products: costumerCart.products,
-        //     cpf: customerCPF
-        // }, {
-        //     headers: {
-        //         Authorization: `Bearer ${token}`
-        //     }
-        // });
-        // setPageIsLoading(false);
-        // navigate('/');
-    }
-    
-    const handleCostumerCart = () =>{
-        setPageIsLoading(true)
-        const promisse = axios.get(`${url}carrinho`, token);
-        promisse.then((res) => {
-            setCostumerCart(res.data);
-            setPageIsLoading(false)
-        });
-        promisse.catch((error) => {
-            navigate("/");
-        });
     }
 
     return(
@@ -102,7 +104,7 @@ export default function PaymentPage(){
             <Section>
                 <Container>
                     <h1 style={{fontSize: '15px'}}>SACOLA</h1>
-                    {dummyCart.products.map((product) => <div><span style={{fontFamily: 'Inter', fontStyle: 'normal', fontWeight: '400',color: '#808080'}}>{product.nome}   x   {product.amount}</span><br/><span style={{fontFamily: 'Inter', fontStyle: 'normal', fontWeight: '200', color: '#808080', fontSize:'14px'}}>Valor unitário: R$ {product.preco}</span></div> )}
+                    {costumerCart.products.map((product) => <div><span style={{fontFamily: 'Inter', fontStyle: 'normal', fontWeight: '400',color: '#808080'}}>{product.nome}   x   {product.amount}</span><br/><span style={{fontFamily: 'Inter', fontStyle: 'normal', fontWeight: '200', color: '#808080', fontSize:'14px'}}>Valor unitário: R$ {product.preco}</span></div> )}
                 </Container>
             </Section>
             <Divisor />
