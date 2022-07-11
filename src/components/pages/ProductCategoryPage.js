@@ -14,9 +14,10 @@ export default function ProductCategoryPage() {
     const { categoriaProduto } = useParams();
     const [isLoading, setIsLoading] = useState(false);
     const [products, setProducts] = useState([]);
+    const [sessionToken, setSessionToken] = useState(sessionStorage.getItem('token'));
 
     const { url } = useContext(UserContext)
-    const { token } = useContext(TokenContext);
+    const { token, setToken } = useContext(TokenContext);
     const navigate = useNavigate();
 
     const devToken = "fc0f83f8-c516-4b38-90e4-fb9ce3657cd5"
@@ -24,6 +25,14 @@ export default function ProductCategoryPage() {
     useEffect(() => {
         //if(!token){return navigate('/menu/login')};
         setIsLoading(true);
+        console.log(sessionToken);
+        if(sessionToken){
+            setToken({
+                headers:{
+                    Authorization: `Bearer ` + sessionToken
+                }
+            })
+        }
         function handleLoadingPage() {
             const promisse = axios.get(`${url}getAllProductsByCategory/${categoriaProduto}`, { categoria: categoriaProduto }, token);
             promisse.then((res) => {
