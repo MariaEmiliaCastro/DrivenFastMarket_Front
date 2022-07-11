@@ -70,7 +70,7 @@ export default function PaymentPage(){
             alert('Preencha todos os campos para continuar');
             return;
         }else{
-            const response = await axios.post(`${url}/checkout`, {
+            const response = await axios.post(`${url}checkout`, {
                 costumerCart,
                 costumerInfos,
                 paymentInfo
@@ -135,7 +135,7 @@ export default function PaymentPage(){
                     </div>
                     <div className="result">
                         <h1>TOTAL</h1>
-                        <h1>R$ {costumerCart.subtotal + 3.50}</h1>
+                        <h1>R$ {(costumerCart.subtotal + 5.00).toFixed(2)}</h1>
                     </div>
                 </Container>
             </Section>
