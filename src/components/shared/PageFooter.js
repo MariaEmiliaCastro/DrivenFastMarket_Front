@@ -20,7 +20,7 @@ export default function PageFooter({ pagePlace, haveProducts}) {
                     :   <></>
             }
             {
-                pagePlace === "Pedidos"
+                pagePlace === "Pagamento"
                     ? <></>
                     : <NavContainer>
                         <LinksSections>
