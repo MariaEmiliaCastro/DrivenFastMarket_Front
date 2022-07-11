@@ -19,12 +19,21 @@ export default function AddToCartButton({ product, productAmount }){
     const navigate = useNavigate();
     console.log(item)
     useEffect(() =>  {
-        if(!token){
-            const promisse = axios.get(`${url}carrinho`, token)
+        if(token){
             console.log(token)
+            const promisse = axios.get(`${url}carrinho`, token)
             promisse.then((res) => {
-                console.log(res)
-
+                const allProducts = res.data.products
+                if(res.data.products)
+                for(let i = 0; i <= allProducts.lenght; i++){
+                    console.log(allProducts[i].nome === item.nome)
+                    if(allProducts[i].nome === item.nome){
+                        setNumber(allProducts[i].amount)
+                    }
+                }
+            })
+            promisse.catch((error) => {
+                console.log(error)
             })
         }
         
