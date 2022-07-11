@@ -74,11 +74,7 @@ export default function PaymentPage(){
                 costumerCart,
                 costumerInfos,
                 paymentInfo
-            }, {
-                headers: {
-                    Authorization: `Bearer ${token}`
-                }
-            });
+            },token);
             setPageIsLoading(false);
             console.log(response);
             navigate('/');
