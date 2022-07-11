@@ -22,7 +22,7 @@ export default function LoginPage (){
             password
         };
 
-        const promise = axios.post(`${url}/signin`, payload);
+        const promise = axios.post(`${url}signin`, payload);
         promise.then( response => {
             
             console.log(response.data.token);
@@ -80,7 +80,7 @@ export default function LoginPage (){
                     <div className="meio">ou</div>
                     <div className="linhaDois"><hr/></div>
                 </Separador>
-                <Link to="/menu/register" style={{ textDecoration: 'none' }}>
+                <Link to="/menu/registro" style={{ textDecoration: 'none' }}>
                     <div className="link">Criar nova conta</div>
                 </Link>
                 <ToastContainer />
