@@ -6,7 +6,9 @@ export default function Products({product, index }){
     return (
             <ProductBox key={index}>
                 <ProductImgBox>
-                    <div className="info"><span>1 kg</span></div>
+                    {
+                        //<div className="info"><span>1 kg</span></div> Em Desenvolvimento
+                    }
                     <img src={product.image} alt='' />
                     <AddToCartButton product={product}/>
                 </ProductImgBox>
@@ -46,6 +48,7 @@ const ProductImgBox = styled.div`
         width:35px;
         background-color: #FF4791;
         border-radius:20px;
+        float: right;
         h3{
             font-weight: 500;
             font-size: 25px;
