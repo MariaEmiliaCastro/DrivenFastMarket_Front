@@ -26,7 +26,11 @@ export default function LoginPage (){
         promise.then( response => {
             
             console.log(response.data.token);
-            setToken(response.data.token);
+            setToken({
+                headers:{
+                    Authorization: `Bearer ` + response.data.token
+                }
+            })
             toast.success('🛒 Login realizado com sucesso!', {
                 position: "top-right",
                 autoClose: 5000,
