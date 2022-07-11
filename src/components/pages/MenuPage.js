@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import UserContext from "../../contexts/UserContext";
 
-import Footer from "../shared/PageFooter"
+import PageFooter from "../shared/PageFooter";
 
 export default function MenuPage(){
     const { user } = useContext(UserContext);
@@ -64,7 +64,7 @@ export default function MenuPage(){
                 : <></>
                 }
             </Main>
-            <Footer />
+            <PageFooter pagePlace="Menu" />
         </Body>
         
     )

@@ -8,6 +8,7 @@ import UserContext from '../../contexts/UserContext';
 import PageHeader from "../shared/Header";
 import TrolleyMain from "../pageComponents/TrolleyPage/TrolleyMain";
 import EmptyPage from "../shared/EmptyPage";
+import PageFooter from "../shared/PageFooter";
 
 export default function TrolleyPage(){
     const [costumerCart, setCostumerCart] = useState({products:[]});
@@ -48,6 +49,7 @@ export default function TrolleyPage(){
                         ?   <EmptyPage page="trolley"/>
                         :   <TrolleyMain costumerCart={costumerCart} costumerInfos={costumerInfos} handleCostumerCart={handleCostumerCart}/>
                     }
+                    <PageFooter pagePlace="Carrinho" />
                 </>
         }
         </>
