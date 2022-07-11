@@ -56,7 +56,7 @@ export default function TrolleyMain({ costumerCart, costumerInfos, handleCostume
                     </div>
                     <div className="result">
                         <h1>TOTAL</h1>
-                        <h1>R$ {costumerCart.subtotal + 3.50}</h1>
+                        <h1>R$ {costumerCart.subtotal + 5.00}</h1>
                     </div>
                 </Container>
             </Section>

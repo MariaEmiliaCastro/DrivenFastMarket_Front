@@ -8,6 +8,7 @@ import UserContext from '../../contexts/UserContext';
 import PageHeader from "../shared/Header";
 import TrolleyMain from "../pageComponents/TrolleyPage/TrolleyMain";
 import EmptyPage from "../shared/EmptyPage";
+import { ToastContainer, toast } from 'react-toastify';
 
 import { Main, Section, Container, Divisor, List, ItensList } from '../pageComponents/TrolleyPage/TrolleyStyle'
 import styled from "styled-components";
@@ -25,32 +26,6 @@ export default function PaymentPage(){
     const navigate = useNavigate();
     const { token } = useContext(TokenContext);
     const { url } = useContext(UserContext);
-
-    // const dummyCart = {
-    //     products: [
-    //         {
-    //             id: 1,
-    //             nome: "Batata",
-    //             preco: 10,
-    //             amount: 1,
-    //             image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSWbXjrLaTPMkC11LVRHmaR-OoM8KgHNPb1CA&usqp=CAU"
-    //         },
-    //         {
-    //             id: 2,
-    //             nome: "Bananinha",
-    //             preco: 20,
-    //             amount: 2,
-    //             image: "https://i.pinimg.com/564x/7f/83/52/7f83520aaf84a65bbf9a35acdf08cc33.jpg"
-    //         },
-    //         {
-    //             id: 3,
-    //             nome: "Cenoura",
-    //             preco: 30,
-    //             amount: 3,
-    //             image: "http://afflictor.com/wp-content/uploads/2014/09/Gia_Carangi_4.jpg"
-    //         }
-    //     ]
-    // }
 
     useEffect(() => {
         const promise = axios.get(`${url}carrinho`, token);
@@ -80,6 +55,15 @@ export default function PaymentPage(){
                 }
             });
             setPageIsLoading(false);
+            toast.success('🛒 Pedido realizado com sucesso!', {
+                position: "top-right",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+            });
             console.log(response);
             navigate('/');
         }
@@ -159,7 +143,7 @@ export default function PaymentPage(){
                 <button onClick={() => setMeioDePagarModal(!meioDePagarModal)}>Confirmar</button>
             </Card>
         </Main>
-                                
+        <ToastContainer />                  
         </>
     )
 }
