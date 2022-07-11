@@ -44,7 +44,7 @@ export default function RegisterPage () {
                 password
             }
     
-            const promise = axios.post(`${url}/signUp`, data);
+            const promise = axios.post(`${url}signUp`, data);
             promise.then(response => {
                 navigate("/menu/login");
             })

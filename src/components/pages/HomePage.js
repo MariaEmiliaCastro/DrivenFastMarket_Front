@@ -42,7 +42,7 @@ export default function HomePage(){
                 <Categories>
                     {categories.map((category, index) => {
                         return(
-                            <Link to={`/categories/${category._id}`} key={index} style={{ textDecoration: 'none' }}>
+                            <Link to={`/${category._id}`} key={index} style={{ textDecoration: 'none' }}>
                                 <div>
                                     <img src={category.image} alt="banner"/>
                                     <h3>{category._id}</h3>
