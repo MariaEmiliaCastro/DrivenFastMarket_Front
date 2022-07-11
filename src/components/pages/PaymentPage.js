@@ -66,7 +66,7 @@ export default function PaymentPage(){
     const sendOrder = async () => {
         setPageIsLoading(true);
         console.log(paymentInfo);
-        if(paymentInfo.cardNumber === undefined || paymentInfo.cardNumber === '' || paymentInfo.cardName === undefined || paymentInfo.cardName === '' || paymentInfo.cardCVV === undefined || paymentInfo.cardCVV === '' || customerCPF === undefined || customerCPF === ''){
+        if(paymentInfo.cardNumber === undefined || paymentInfo.cardNumber === '' || paymentInfo.cardName === undefined || paymentInfo.cardName === '' || paymentInfo.cardSecurityCode === undefined || paymentInfo.cardSecurityCode === '' || paymentInfo.cardValidade === undefined || paymentInfo.cardValidade === '' || customerCPF === undefined || customerCPF === ''){
             alert('Preencha todos os campos para continuar');
             return;
         }else{
