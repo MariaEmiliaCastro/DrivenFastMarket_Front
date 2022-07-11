@@ -19,7 +19,16 @@ export default function AddToCartButton({ product, productAmount }){
     const navigate = useNavigate();
     console.log(item)
     useEffect(() =>  {
-        setNumber(productAmount)
+        if(!token){
+            const promisse = axios.get(`${url}carrinho`, token)
+            console.log(token)
+            promisse.then((res) => {
+                console.log(res)
+
+            })
+        }
+        
+        
     }, [])
 
     function handleCostumerCart(type){
@@ -111,6 +120,7 @@ const Button = styled.div`
     justify-content:center;
     border-radius:20px;
     transition: width 1s;
+    float: right;
     button{
         width: 20px;
         height:20px;
@@ -126,11 +136,12 @@ const Button = styled.div`
         line-height: 24px;
         color: #ffffff;
     }
-    &.haveOnCart{
+    &.button.haveOnCart{
         padding: 0 10px;
         width: 100px;
         display:flex;
         align-items center;
         justify-content: space-between;
+        
     }
 `
