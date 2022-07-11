@@ -33,7 +33,7 @@ export default function AddToCartButton({ product, productAmount }){
         const clickType = {
             toCart: async () => {
                 try{
-                    const promisse = axios.post(`${url}carrinho`, item, token);
+                    const promisse = axios.post(`${url}carrinho`, {...item, amount: 1}, token);
                     promisse.then(() => {
                         setChangeButton(true);
                         setNumber(1);
@@ -45,7 +45,7 @@ export default function AddToCartButton({ product, productAmount }){
             },
             adding: async () => {
                 try{
-                    const promisse = axios.put(`${url}carrinho`, item, token);
+                    const promisse = axios.put(`${url}carrinho`, {...item, amount: 1}, token);
                     promisse.then(() => {
                         setNumber(number + 1);
                         setIsButtonDisable(false);
@@ -56,7 +56,7 @@ export default function AddToCartButton({ product, productAmount }){
             },
             reduce: async () => {
                 try{
-                    const promisse = axios.put(`${url}carrinho`, item, token);
+                    const promisse = axios.put(`${url}carrinho`, {...item, amount: -1}, token);
                     promisse.then(() => {
                         setNumber(number - 1);
                         setIsButtonDisable(false);
@@ -67,7 +67,7 @@ export default function AddToCartButton({ product, productAmount }){
             },
             delete: async () => {
                 try{
-                    const promisse = axios.delete(`${url}carrinho`, item, token);
+                    const promisse = axios.delete(`${url}carrinho`, {...item, amount: 1, productId:`${item.nome}.${item.categoria}.${item.tipo}`}, token);
                     promisse.then(() => {
                         setChangeButton(false);
                         setNumber(0);
