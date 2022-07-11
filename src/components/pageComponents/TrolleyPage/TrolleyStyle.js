@@ -5,6 +5,9 @@ const Main = styled.main`
     min-height: 100vh;
     display:flex;
     flex-direction: column;
+    &.trolley{
+        padding-bottom: 165px;
+    }
 `
 
 const Section = styled.section`

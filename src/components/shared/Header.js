@@ -1,5 +1,6 @@
 import styled from "styled-components"
 import { useNavigate } from "react-router-dom"
+import { Divisor } from "../pageComponents/TrolleyPage/TrolleyStyle";
 export default function PageHeader({page, type, navigateTo }){
     const navigate = useNavigate();
     const handleNavigation = () => navigate(navigateTo);
@@ -11,10 +12,12 @@ export default function PageHeader({page, type, navigateTo }){
                 ?   <></>
                 :   <ion-icon name="chevron-back-outline" onClick={handleNavigation}></ion-icon>
             }
-            <h1>{page}</h1>
+            <h1 className="type">{page}</h1>
             {
                 (page === "Carrinho" || page === "Pedidos" || page === "Pagamento")
-                ? <></>
+                ?   page === "Pagamento"
+                    ?   <div></div>
+                    :   <></>
                 : <ion-icon name="search-outline" onClick={handleSearch}></ion-icon>
             }
         </Header>
@@ -46,5 +49,9 @@ const Header = styled.header`
     }
     &.title{
         justify-content:center;
+    }
+    div{
+        width:35px;
+        height:35px;
     }
 `

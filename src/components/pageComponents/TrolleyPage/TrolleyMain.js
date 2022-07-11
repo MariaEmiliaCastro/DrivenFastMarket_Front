@@ -8,7 +8,7 @@ export default function TrolleyMain({ costumerCart, costumerInfos, handleCostume
     const handleFeatInConstruction = () => window.alert('Essa função foi desativada temporariamente. Desculpe pelo transtorno!');
 
     return (
-        <Main>
+        <Main className="trolley">
             <Section>
                 <Container>
                     <h1>ENDEREÇO</h1>
