@@ -49,7 +49,7 @@ export default function TrolleyPage(){
                         ?   <EmptyPage page="trolley"/>
                         :   <TrolleyMain costumerCart={costumerCart} costumerInfos={costumerInfos} handleCostumerCart={handleCostumerCart}/>
                     }
-                    <PageFooter pagePlace="Carrinho" />
+                    <PageFooter pagePlace="Carrinho" haveProducts={costumerCart.products.length === 0}/>
                 </>
         }
         </>
