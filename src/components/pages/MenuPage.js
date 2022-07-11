@@ -25,7 +25,7 @@ export default function MenuPage(){
                 <h1 onClick={goToLogin}>Entrar</h1>
                 {isUserLoggedIn
                 ? <>
-                    <img src={user.image} alt="" />
+                    <ion-icon name="person-circle-sharp"></ion-icon>
                     <div>
                         <h1>{user.name}</h1>
                         <span>{user.email}</span>
@@ -108,6 +108,7 @@ const Header = styled.header`
         height:80px;
     }
     h1{
+        font-family: 'Finlandica',sans-serif;
         margin-left: 20px;
         font-weight: 700;
         font-size: 29px;
