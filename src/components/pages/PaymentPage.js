@@ -45,7 +45,7 @@ export default function PaymentPage(){
             alert('Preencha todos os campos para continuar');
             return;
         }else{
-            const response = await axios.post(`${url}/checkout`, {
+            const response = await axios.post(`${url}checkout`, {
                 costumerCart,
                 costumerInfos,
                 paymentInfo
