@@ -67,7 +67,7 @@ export default function AddToCartButton({ product, productAmount }){
             },
             delete: async () => {
                 try{
-                    const promisse = axios.delete(`${url}carrinho`, {...item, amount: 1, productId:`${item.nome}.${item.categoria}.${item.tipo}`}, token);
+                    const promisse = axios.delete(`${url}carrinho/${item.nome}.${item.categoria}.${item.tipo}`, token);
                     promisse.then(() => {
                         setChangeButton(false);
                         setNumber(0);
