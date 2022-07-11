@@ -40,7 +40,9 @@ export default function LoginPage (){
                 draggable: true,
                 progress: undefined,
             });
-
+            // save to session storage
+            sessionStorage.setItem('token', response.data.token);
+            navigate("/");
             navigate("/");
         })
         .catch(err => {
