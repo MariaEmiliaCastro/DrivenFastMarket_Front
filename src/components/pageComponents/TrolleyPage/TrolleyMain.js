@@ -12,13 +12,13 @@ export default function TrolleyMain({ costumerCart, costumerInfos, handleCostume
                 <Container>
                     <h1>ENDEREÇO</h1>
                     <div >
-                        <h2>Rua conde de Bomfim, 667</h2> {/* Endereço e numero */}
-                        <h3>Tijuca - Rio de Janeiro</h3> {/* Bairro / Cidade */}
-                        <h3>Casa 9</h3> {/*Complemento*/}
+                        <h2></h2> {/* Endereço e numero */}
+                        <h3></h3> {/* Bairro / Cidade */}
+                        <h3></h3> {/*Complemento*/}
                     </div>
                 </Container>
                 <div className="extraInteractions">
-                    <ion-icon name="repeat-outline"></ion-icon>
+                    <ion-icon name="repeat-outline" onClick={handleFeatInConstruction}></ion-icon>
                     <span>TROCAR</span>
                 </div>
             </Section>
