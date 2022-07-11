@@ -48,7 +48,7 @@ export default function ProductCategoryPage() {
     }, [])
     console.log(products)
 
-    const handleSeeMore = (x) => { navigate(`/${categoriaProduto}/${x}`) };
+    const handleSeeMore = (x) => { window.alert(`Desativado temporariamente`) };
     const handleLastPage = (place) => { navigate(place) };
 
     return (
