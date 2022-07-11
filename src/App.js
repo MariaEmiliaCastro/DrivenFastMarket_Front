@@ -24,7 +24,7 @@ export default function App() {
 
     return (
         <TokenContext.Provider value={{setToken, token}}>
-            <UserContext.Provider value={{ url, setUrl }}>
+            <UserContext.Provider value={{ url, setUrl, user, setUser }}>
                 <BrowserRouter>
                     <Routes>
                             <Route path="/" element={<HomePage />} />

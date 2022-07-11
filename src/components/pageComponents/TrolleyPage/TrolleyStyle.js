@@ -95,7 +95,9 @@ const Divisor = styled.div`
     }
 `
 const List = styled.ul`
+    width: 100%;
     li{
+        width: 100%;
         margin: 15px 0;
     }
     li:first-of-type{

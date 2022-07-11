@@ -8,11 +8,10 @@ import { ToastContainer, toast } from 'react-toastify';
 
 export default function LoginPage (){
     
-    const { url } = React.useContext(UserContext);
+    const { url,setUser } = React.useContext(UserContext);
     const { setToken, token } = React.useContext(TokenContext);
     const [email, setEmail] = React.useState('');
     const [password, setPassword] = React.useState('');
-
     const navigate = useNavigate();
 
     const loginUser = (event) => {
@@ -24,13 +23,12 @@ export default function LoginPage (){
 
         const promise = axios.post(`${url}signin`, payload);
         promise.then( response => {
-
-            console.log(response.data.token);
             setToken({
                 headers:{
                     Authorization: `Bearer ` + response.data.token
                 }
             })
+            setUser(payload.email)
             toast.success('🛒 Login realizado com sucesso!', {
                 position: "top-right",
                 autoClose: 5000,
