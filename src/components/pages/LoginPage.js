@@ -67,6 +67,11 @@ export default function LoginPage (){
     return (
         <>
             <Container>
+                <Link to={-1} style={{ textDecoration: 'none' }}>
+                    <div className="goBackArrow">
+                        <ion-icon name="chevron-back-outline" style={{color: "#FF4791", fontSize: "35px"}}></ion-icon>
+                    </div>
+                </Link>
                 <h1>DrivenFastMarket</h1>
                 <form onSubmit={loginUser}>
                     <label>E-mail</label>
@@ -99,6 +104,14 @@ const Container = styled.div`
     align-items: center;
     justify-content: center;
     
+    .goBackArrow{
+        position: absolute;
+        top: 0;
+        left: 0;
+        padding: 10px;
+        cursor: pointer;
+    }
+
     h1 {
         font-family: 'Finlandica', sans-serif;
         font-style: normal;
